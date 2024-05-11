@@ -45,7 +45,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     <Link>
-                        <button className="py-3 px-6 bg-primary text-white text-xl rounded-[50px_100px_50px_10px]">Sign IN</button>
+                        <button className="p-3 sm:py-3 sm:px-6 bg-primary text-white text-xl rounded-[50px_100px_50px_10px]">Sign IN</button>
                     </Link>
                     
 
