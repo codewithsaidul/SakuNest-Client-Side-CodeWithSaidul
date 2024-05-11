@@ -1,8 +1,13 @@
+import Banner from "../components/Banner"
 
 
 const Home = () => {
   return (
-    <div className="text-4xl font-title text-primary">Home</div>
+    <div>
+        <div>
+            <Banner/>
+        </div>
+    </div>
   )
 }
 
