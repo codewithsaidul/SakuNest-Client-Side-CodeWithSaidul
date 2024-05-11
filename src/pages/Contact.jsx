@@ -1,4 +1,5 @@
 import ContactBanner from "../components/ContactBanner"
+import ContactLocation from "../components/ContactLocation"
 
 
 const Contact = () => {
@@ -6,6 +7,10 @@ const Contact = () => {
     <div>
          <div>
             <ContactBanner/>
+         </div>
+
+         <div className="my-20">
+            <ContactLocation/>
          </div>
     </div>
   )
