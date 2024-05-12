@@ -15,7 +15,7 @@ const Home = () => {
   
 
   const featuredRooms = rooms.filter(room => room.specialOffers !== '');
-
+  
 
   return (
     <div>
