@@ -1,0 +1,123 @@
+[
+    {
+      "id": 1,
+      "roomName": "Cityscape Haven",
+      "image": "https://i.postimg.cc/qvVQY26v/room1.jpg",
+      "description": "Cozy single room with city view",
+      "pricePerNight": 80,
+      "roomSize": "Single (1 person)",
+      "availability": true,
+      "specialOffers": "10% off for bookings of 3 nights or more"
+    },
+    {
+      "id": 2,
+      "roomName": "Garden Terrace Retreat",
+      "image": "https://i.postimg.cc/BnTNGt2c/room2.jpg",
+      "description": "Spacious double room with garden terrace",
+      "pricePerNight": 120,
+      "roomSize": "Double (2 persons)",
+      "availability": false,
+      "specialOffers": ""
+    },
+    {
+      "id": 3,
+      "roomName": "Ocean Vista Suite",
+      "image": "https://i.postimg.cc/d0J6QvBM/room3.jpg",
+      "description": "Luxurious suite with ocean view balcony",
+      "pricePerNight": 250,
+      "roomSize": "Suite (2-4 persons)",
+      "availability": true,
+      "specialOffers": ""
+    },
+    {
+      "id": 4,
+      "roomName": "Mountain View Retreat",
+      "image": "https://i.postimg.cc/5tp36G7X/room4.jpg",
+      "description": "Charming twin room with mountain vista",
+      "pricePerNight": 100,
+      "roomSize": "Twin (2 persons)",
+      "availability": true,
+      "specialOffers": ""
+    },
+    {
+      "id": 5,
+      "roomName": "Rustic Cabin Hideaway",
+      "image": "https://i.postimg.cc/yddT9Ptv/room5.jpg",
+      "description": "Rustic cabin for a nature retreat",
+      "pricePerNight": 150,
+      "roomSize": "Cabin (2-3 persons)",
+      "availability": true,
+      "specialOffers": "20% off for bookings made 30 days in advance"
+    },
+    {
+      "id": 6,
+      "roomName": "Family Poolside Apartment",
+      "image": "https://i.postimg.cc/9XD6Ht0d/room6.jpg",
+      "description": "Family-friendly apartment with pool access",
+      "pricePerNight": 180,
+      "roomSize": "Apartment (4-6 persons)",
+      "availability": true,
+      "specialOffers": ""
+    },
+    {
+      "id": 7,
+      "roomName": "Traditional Tatami Retreat",
+      "image": "https://i.postimg.cc/j5F4hfrK/room7.jpg",
+      "description": "Traditional Japanese tatami room",
+      "pricePerNight": 90,
+      "roomSize": "Tatami (2 persons)",
+      "availability": false,
+      "specialOffers": ""
+    },
+    {
+      "id": 8,
+      "roomName": "Skyline Loft Escape",
+      "image": "https://i.postimg.cc/65RFyWdT/room8.jpg",
+      "description": "Contemporary loft with skyline views",
+      "pricePerNight": 200,
+      "roomSize": "Loft (2 persons)",
+      "availability": true,
+      "specialOffers": ""
+    },
+    {
+      "id": 9,
+      "roomName": "Sunset View Bungalow",
+      "image": "https://i.postimg.cc/nLxRsqnP/romm9.jpg",
+      "description": "Cozy bungalow with stunning sunset views",
+      "pricePerNight": 120,
+      "roomSize": "Bungalow (2 persons)",
+      "availability": true,
+      "specialOffers": ""
+    },
+    {
+      "id": 10,
+      "roomName": "Lakeside Cabin Retreat",
+      "image": "https://i.postimg.cc/tgzrF7TC/romm10.jpg",
+      "description": "Secluded cabin with panoramic lake views",
+      "pricePerNight": 180,
+      "roomSize": "Cabin (2-3 persons)",
+      "availability": true,
+      "specialOffers": "15% off for bookings of 5 nights or more"
+    },
+    {
+      "id": 11,
+      "roomName": "Urban Studio Loft",
+      "image": "https://i.postimg.cc/sfLTYkVS/romm11.jpg",
+      "description": "Modern studio loft in the heart of the city",
+      "pricePerNight": 150,
+      "roomSize": "Studio (1-2 persons)",
+      "availability": true,
+      "specialOffers": ""
+    },
+    {
+      "id": 12,
+      "roomName": "Beachfront Villa",
+      "image": "https://i.postimg.cc/gk6NNgJ7/room12.jpg",
+      "description": "Luxurious villa steps away from the beach",
+      "pricePerNight": 300,
+      "roomSize": "Villa (4-8 persons)",
+      "availability": true,
+      "specialOffers": ""
+    }
+  ]
+  

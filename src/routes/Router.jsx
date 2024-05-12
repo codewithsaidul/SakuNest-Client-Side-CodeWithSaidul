@@ -5,6 +5,8 @@ import Home from "../pages/Home";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
 import ErrorPage from "../pages/ErrorPage";
+import RoomDetails from "../pages/RoomDetails";
+import Rooms from "../pages/Rooms";
 
 const router = createBrowserRouter([
     {
@@ -14,7 +16,18 @@ const router = createBrowserRouter([
       children: [
         {
             index: true,
-            element: <Home/>
+            element: <Home/>,
+            loader: () => fetch('./rooms.json')
+        }, 
+        {
+            path: '/rooms',
+            element: <Rooms/>,
+            loader: () => fetch(`./rooms.json`)
+        }, 
+        {
+            path: '/rooms/:id',
+            element: <RoomDetails/>,
+            loader: () => fetch(`./rooms.json`)
         }, 
         {
           path: '/about', 
