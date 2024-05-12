@@ -1,7 +1,7 @@
 import Banner from "../components/Banner"
 import ContactForm from "../components/ContactForm"
-
 import MyMaps from "../components/MyMaps"
+import Newsletter from "../components/Newsletter"
 
 
 
@@ -10,6 +10,7 @@ const Home = () => {
     <div>
         <div>
             <Banner/>
+            <Newsletter/>
         </div>
 
         <div className="my-20">
