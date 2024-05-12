@@ -12,6 +12,10 @@ export default {
       },
       'colors': {
         'primary': '#faa300'
+      },
+      'boxShadow' : {
+        'innerShadow' : 'inset 5px 5px 6px #777777, inset -5px -5px 6px #ffffff',
+        'outerShadow' : '5px 5px 6px #777777, -5px -5px 6px #ffffff',
       }
     },
   },
