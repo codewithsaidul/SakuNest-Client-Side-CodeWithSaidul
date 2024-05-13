@@ -68,7 +68,7 @@ const RoomDetails = () => {
             </div>
 
             <div className="mt-10">
-              <Link to={`booking/${room[0].id}`} className="py-3 px-7 rounded-full bg-primary text-white font-title text-2xl">Book Now</Link>
+              <Link to={`/booking/${room[0].id}`} className="py-3 px-7 rounded-full bg-primary text-white font-title text-2xl">Book Now</Link>
             </div>
           </div>
         </div>

@@ -9,6 +9,7 @@ import RoomDetails from "../pages/RoomDetails";
 import Rooms from "../pages/Rooms";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Booking from "../pages/Booking";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
         {
             path: '/rooms/:id',
             element: <RoomDetails/>,
+            loader: () => fetch(`/rooms.json`)
+        }, 
+        {
+            path: '/booking/:id',
+            element: <Booking/>,
             loader: () => fetch(`/rooms.json`)
         }, 
         {
