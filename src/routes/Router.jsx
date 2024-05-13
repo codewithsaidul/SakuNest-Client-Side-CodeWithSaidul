@@ -20,7 +20,7 @@ const router = createBrowserRouter([
         {
             index: true,
             element: <Home/>,
-            loader: () => fetch('/rooms.json')
+            loader: () => fetch(`${import.meta.env.VITE_API_KEY}/rooms`)
         }, 
         {
             path: '/rooms',
