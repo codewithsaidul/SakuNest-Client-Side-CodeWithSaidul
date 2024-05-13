@@ -7,6 +7,7 @@ import Contact from "../pages/Contact";
 import ErrorPage from "../pages/ErrorPage";
 import RoomDetails from "../pages/RoomDetails";
 import Rooms from "../pages/Rooms";
+import Login from "../pages/Login";
 
 const router = createBrowserRouter([
     {
@@ -36,7 +37,11 @@ const router = createBrowserRouter([
         {
           path: '/contact',
           element: <Contact/>
-        }
+        },
+        {
+          path: '/signIn',
+          element: <Login/>
+        },
       ]
     },
   ]);

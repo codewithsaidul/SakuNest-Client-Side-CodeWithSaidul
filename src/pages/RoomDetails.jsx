@@ -15,7 +15,7 @@ const RoomDetails = () => {
 
 
   const room = rooms.filter(room => room.id === roomId);
-  console.log(room[0])
+  
 
   return (
 
