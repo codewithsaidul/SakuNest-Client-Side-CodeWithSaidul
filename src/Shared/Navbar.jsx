@@ -50,7 +50,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link>
+                    <Link to='/signIn'>
                         <button className="p-3 sm:py-3 sm:px-6 bg-primary text-white text-xl rounded-[50px_100px_50px_10px]">Sign IN</button>
                     </Link>
                     
