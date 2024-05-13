@@ -1,17 +1,37 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
-import user1 from '../assets/user/user1.jpg'
-import user2 from '../assets/user/user2.jpg'
-import user3 from '../assets/user/user4.jpg'
-import user4 from '../assets/user/user3.jpg'
+
 // import Swiper and modules styles
 import 'swiper/css';
 import 'swiper/css/navigation';
+// import { useLoaderData } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 
 
 
 const ReviewSlider = () => {
+
+    const [reviews, setReviews] = useState([]) || [];
+
+
+    useEffect(() => {
+        getReviews();
+    }, [])
+
+
+    const getReviews = async () => {
+        try {
+            const { data } = await axios(`${import.meta.env.VITE_API_URL}/review`);
+            setReviews(data)
+        } catch {
+            toast.error("Something Went Wrong")
+        }
+    }
+
+
     return (
         <div className='my-20'>
             <div className='px-4 sm:px-8 md:px-12 lg:px-16'>
@@ -19,14 +39,14 @@ const ReviewSlider = () => {
                 <div>
                     <h2 className='text-3xl text-primary font-title font-bold text-center mb-16'>What Client Say</h2>
                 </div>
-                
+
                 <Swiper
                     slidesPerView={1}
                     spaceBetween={10}
                     autoplay={{
                         delay: 2500,
                         disableOnInteraction: false,
-                      }}
+                    }}
                     loop={true}
                     navigation={true}
                     breakpoints={{
@@ -43,71 +63,28 @@ const ReviewSlider = () => {
                             spaceBetween: 50,
                         },
                     }}
-                    modules={[ Autoplay, Navigation]}
+                    modules={[Autoplay, Navigation]}
                     className="mySwiper"
                 >
-                    
+
                     {/* Slider 1 */}
-                    <SwiperSlide>
-                        <div className='py-5 px-7 shadow-custom bg-base-200 h-fit rounded-lg'>
-                            <div className='p-10 text-center'>
-                                <p className='text-base text-gray-600 font-normal'>My stay at the Cityscape Haven was truly remarkable. From the moment I entered the room, I was greeted with warmth and comfort. The cozy ambiance coupled with the breathtaking views of the city skyline made for an unforgettable experience. </p>
-                                <div className='flex justify-center items-center mt-5'>
-                                    <figure>
-                                        <img className='w-20 h-20 rounded-full mr-5' src={user1} alt="" />
-                                    </figure>
-                                    <h3 className='text-2xl text-primary font-title font-semibold'>Jhon Doe</h3>
+                    {
+                        reviews.map(review =>
+                            <SwiperSlide key={review?._id}>
+                                <div className='py-5 px-7 shadow-custom bg-base-200 h-fit rounded-lg'>
+                                    <div className='p-10 text-center'>
+                                        <p className='text-base text-gray-600 font-normal'>{review?.review}</p>
+                                        <div className='flex justify-center items-center mt-5'>
+                                            <figure>
+                                                <img className='w-20 h-20 rounded-full mr-5' src={review?.photo} alt="user image" />
+                                            </figure>
+                                            <h3 className='text-2xl text-primary font-title font-semibold'>{review?.name}</h3>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
+                            </SwiperSlide>)
+                    }
 
-                    {/* Slider 2 */}
-                    <SwiperSlide>
-                        <div className='py-5 px-7 shadow-custom bg-base-200 h-fit rounded-lg'>
-                            <div className='p-10 text-center'>
-                                <p className='text-base text-gray-600 font-normal'>I recently had the pleasure of staying at the Garden Terrace Retreat, and it exceeded all my expectations. The room was spacious and beautifully decorated, with a charming garden terrace that provided a tranquil retreat from the bustling city life. </p>
-                                <div className='flex justify-center items-center mt-5'>
-                                    <figure>
-                                        <img className='w-20 h-20 rounded-full mr-5' src={user2} alt="" />
-                                    </figure>
-                                    <h3 className='text-2xl text-primary font-title font-semibold'>Alicy Helly</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-
-
-                    {/* Slider 3 */}
-                    <SwiperSlide>
-                        <div className='py-5 px-7 shadow-custom bg-base-200 h-fit rounded-lg'>
-                            <div className='p-10 text-center'>
-                                <p className='text-base text-gray-600 font-normal'>I recently had the pleasure of staying at the Garden Terrace Retreat, and it exceeded all my expectations. The room was spacious and beautifully decorated, with a charming garden terrace that provided a tranquil retreat from the bustling city life. </p>
-                                <div className='flex justify-center items-center mt-5'>
-                                    <figure>
-                                        <img className='w-20 h-20 rounded-full mr-5' src={user3} alt="" />
-                                    </figure>
-                                    <h3 className='text-2xl text-primary font-title font-semibold'>David Johnson</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-
-
-                    {/* Slider 4 */}
-                    <SwiperSlide>
-                        <div className='py-5 px-7 shadow-custom bg-base-200 h-fit rounded-lg'>
-                            <div className='p-10 text-center'>
-                                <p className='text-base text-gray-600 font-normal'>My stay at the Ocean Vista Suite was simply magical. From the moment I stepped onto the ocean-view balcony, I was mesmerized by the breathtaking vistas that stretched out before me. </p>
-                                <div className='flex justify-center items-center mt-5'>
-                                    <figure>
-                                        <img className='w-20 h-20 rounded-full mr-5' src={user4} alt="" />
-                                    </figure>
-                                    <h3 className='text-2xl text-primary font-title font-semibold'>Emily Brown</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
 
                 </Swiper>
             </div>
