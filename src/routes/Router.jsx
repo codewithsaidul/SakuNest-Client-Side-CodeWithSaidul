@@ -8,6 +8,7 @@ import ErrorPage from "../pages/ErrorPage";
 import RoomDetails from "../pages/RoomDetails";
 import Rooms from "../pages/Rooms";
 import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 const router = createBrowserRouter([
     {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
         {
           path: '/signIn',
           element: <Login/>
+        },
+        {
+          path: '/register',
+          element: <Register/>
         },
       ]
     },
