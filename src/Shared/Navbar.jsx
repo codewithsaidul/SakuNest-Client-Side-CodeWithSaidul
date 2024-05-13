@@ -1,7 +1,21 @@
 import { Link, NavLink } from "react-router-dom"
+import useAuth from "../hooks/useAuth"
+import toast from "react-hot-toast"
 
 
 const Navbar = () => {
+
+    const { user, loggedOut } = useAuth()
+
+    
+
+    const handleLogOut = () => {
+        loggedOut()
+        .then(() => {
+            toast.success("Sign Out Successfull!")
+        })
+        .catch(() => toast.error("Something Went Wrong"))
+    }
 
     // Nav Menu for Desktop or Larger Screen
     const navLinks = <>
@@ -40,7 +54,7 @@ const Navbar = () => {
             <div className="navbar w-full px-4 sm:px-8 md:px-12 lg:px-20 mx-auto">
 
                 <div className="navbar-start">
-                    
+
 
                     <a className="text-2xl sm:text-3xl  font-bold font-title text-primary">SakuNest</a>
                 </div>
@@ -50,10 +64,37 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to='/signIn'>
-                        <button className="p-3 sm:py-3 sm:px-6 bg-primary text-white text-xl rounded-[50px_100px_50px_10px]">Sign IN</button>
-                    </Link>
-                    
+
+
+                    <div>
+                        {
+                            user ? <div className="dropdown dropdown-end">
+                                <div tabIndex={0} role="button" className="btn hover:bg-primary btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img alt="Tailwind CSS Navbar component" title={user.displayName} src={user?.photoURL ? user.photoURL : ''} />
+                                    </div>
+                                </div>
+                                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                    <li>
+                                        <a className="justify-between">
+                                            Profile
+                                            <span className="badge">New</span>
+                                        </a>
+                                    </li>
+                                    <li><a>Settings</a></li>
+                                    <li onClick={handleLogOut}><a>Logout</a></li>
+                                </ul>
+                            </div>
+
+                                : <Link to='/signIn'>
+                                    <button className="p-3 sm:py-3 sm:px-6 bg-primary text-white text-xl rounded-[50px_100px_50px_10px]">Sign IN</button>
+                                </Link>
+                        }
+                    </div>
+
+
+
+
 
 
                     <div className="dropdown">

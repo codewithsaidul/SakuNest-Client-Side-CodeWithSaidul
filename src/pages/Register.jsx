@@ -1,20 +1,55 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import useAuth from "../hooks/useAuth";
+import { updateProfile } from "firebase/auth";
+import toast from "react-hot-toast";
 
 
 const Register = () => {
+
+
+    const navigate = useNavigate()
+
+    const { createUser, loggedOut, user, setUser } = useAuth()
+
+    const handleNewUser = e => {
+        e.preventDefault();
+
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const photo = form.photo.value;
+        const password = form.password.value;
+
+        form.reset()
+
+        createUser(email, password)
+            .then(result => {
+                updateProfile(result.user, {
+                    displayName: name,
+                    photoURL: photo
+                })
+                setUser({ ...user, displayName: name, photoURL: photo })
+                navigate('/signIn')
+                toast.success("Account Created Successfully!")
+                loggedOut()
+            })
+            .catch(error => console.log(error.message))
+
+    }
+
     return (
         <div>
             <section className="bg-white dark:bg-gray-900">
                 <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
-                    <form className="w-full max-w-md shadow-md p-5 rounded-lg">
+                    <form onSubmit={handleNewUser} className="w-full max-w-md shadow-md p-5 rounded-lg">
 
 
                         <div className="flex items-center justify-center mt-6">
                             <img className="w-auto h-7 sm:h-8 mr-5" src="https://merakiui.com/images/logo.svg" alt="" />
 
-                            <p className="w-1/3 pb-1 font-medium font-title text-xl text-center text-gray-800 capitalize border-b-2 border-blue-500 dark:border-blue-400 dark:text-white">
+                            <h2 className="w-1/3 pb-1 font-medium font-title text-xl text-center text-gray-800 capitalize border-b-2 border-blue-500 dark:border-blue-400 dark:text-white">
                                 sign up
-                            </p>
+                            </h2>
                         </div>
 
                         {/* User Name */}
@@ -25,7 +60,7 @@ const Register = () => {
                                 </svg>
                             </span>
 
-                            <input type="text" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Username" />
+                            <input type="text" name="name" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Username" />
                         </div>
 
 
@@ -37,7 +72,7 @@ const Register = () => {
                                 </svg>
                             </span>
 
-                            <input type="text" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Photo URL" />
+                            <input type="text" name="photo" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Photo URL" />
                         </div>
 
 
@@ -49,7 +84,7 @@ const Register = () => {
                                 </svg>
                             </span>
 
-                            <input type="email" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
+                            <input type="email" name="email" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Email address" />
                         </div>
 
 
@@ -61,7 +96,7 @@ const Register = () => {
                                 </svg>
                             </span>
 
-                            <input type="password" className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" />
+                            <input type="password" name="password" className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="Password" />
                         </div>
 
 

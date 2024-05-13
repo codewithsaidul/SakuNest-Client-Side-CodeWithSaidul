@@ -21,7 +21,7 @@ const RoomDetails = () => {
 
 
     <div>
-      <div className="hero h-40 mb-20" style={{ backgroundImage: `url(${BannerBG})` }}>
+      <div className="hero h-96 mb-20" style={{ backgroundImage: `url(${BannerBG})` }}>
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">
           <div>
