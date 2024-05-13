@@ -1,14 +1,10 @@
-import { useLoaderData, useParams } from "react-router-dom"
+import { useLoaderData } from "react-router-dom"
 import BannerBG from '../../public/banerBG.jpg'
 
 const Booking = () => {
 
-    const bookings = useLoaderData();
-    const { id } = useParams();
-    const roomId = parseInt(id)
+    const booking = useLoaderData();
 
-
-    const booking = bookings.filter(room => room.id === roomId);
 
     return (
         <div>
@@ -26,7 +22,7 @@ const Booking = () => {
 
             <div className="flex justify-center items-center my-20">
                 <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
-                    <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">Booking : {booking[0].roomName}</h2>
+                    <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">Booking : {booking.roomName}</h2>
 
                     <form>
                         <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">

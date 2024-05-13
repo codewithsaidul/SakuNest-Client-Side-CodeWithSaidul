@@ -10,6 +10,7 @@ import Rooms from "../pages/Rooms";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Booking from "../pages/Booking";
+import Reviews from "../pages/Reviews";
 
 const router = createBrowserRouter([
     {
@@ -20,23 +21,23 @@ const router = createBrowserRouter([
         {
             index: true,
             element: <Home/>,
-            loader: () => fetch(`${import.meta.env.VITE_API_KEY}/rooms`)
+            loader: () => fetch(`${import.meta.env.VITE_API_URL}/rooms`)
         }, 
         {
             path: '/rooms',
             element: <Rooms/>,
-            loader: () => fetch(`/rooms.json`)
+            loader: () => fetch(`${import.meta.env.VITE_API_URL}/rooms`)
         }, 
         {
             path: '/rooms/:id',
             element: <RoomDetails/>,
-            loader: () => fetch(`/rooms.json`)
+            loader: ( { params }) => fetch(`${import.meta.env.VITE_API_URL}/rooms/${params.id}`)
         }, 
         {
             path: '/booking/:id',
             element: <Booking/>,
-            loader: () => fetch(`/rooms.json`)
-        }, 
+            loader: ( { params }) => fetch(`${import.meta.env.VITE_API_URL}/rooms/${params.id}`)
+        },
         {
           path: '/about', 
           element: <About/>
@@ -53,6 +54,11 @@ const router = createBrowserRouter([
           path: '/register',
           element: <Register/>
         },
+        {
+          path: '/review/:id',
+          element: <Reviews/>,
+          loader: ( { params }) => fetch(`${import.meta.env.VITE_API_URL}/rooms/${params.id}`)
+        }
       ]
     },
   ]);
