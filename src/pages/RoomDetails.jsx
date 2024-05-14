@@ -55,7 +55,7 @@ const RoomDetails = () => {
                 Room Size : <span className="text-2xl text-primary font-title font-semibold">{room.roomSize}</span>
               </h2>
               <h2 className="text-xl font-medium text-gray-400 flex gap-5 items-center">
-                Availability : <span className="text-2xl text-primary font-semibold">{room.availability ? <p>Unavilable</p> : <p>Avilable</p>}</span>
+                Availability : <span className="text-2xl text-primary font-semibold">{room.availability ? <p>Avilable</p> : <p>Unavilable</p>}</span>
               </h2>
             </div>
 
@@ -67,8 +67,8 @@ const RoomDetails = () => {
               
               {
                 room.availability 
-                ? <Link  to={`/review/${room._id}`}  className="py-3 px-7 rounded-full bg-primary text-white font-title text- 2xl">Give A Review</Link>
-                : <Link  to={`/booking/${room._id}`}  className="py-3 px-7 rounded-full bg-primary text-white font-title text-2xl">Book Now</Link>
+                ? <Link  to={`/booking/${room._id}`}  className="py-3 px-7 rounded-full bg-primary text-white font-title text-2xl">Book Now</Link>
+                : <Link  to={`/review/${room._id}`}  className="py-3 px-7 rounded-full bg-primary text-white font-title text- 2xl">Give A Review</Link>
               }
               
             </div>

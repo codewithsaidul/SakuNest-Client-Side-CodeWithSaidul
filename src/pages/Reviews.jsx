@@ -1,38 +1,40 @@
 import { useLoaderData } from 'react-router-dom'
 import BannerBG from '../../public/banerBG.jpg'
 import useAuth from '../hooks/useAuth'
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import axios from 'axios'
 
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from 'react';
+// import { useState } from 'react';
 import toast from 'react-hot-toast';
 
 const Reviews = () => {
 
-    const [startDate, setStartDate] = useState(new Date());
+    // const [startDate, setStartDate] = useState(new Date());
 
     const { user } = useAuth()
 
     const room = useLoaderData();
 
-
     const handleReview = async e => {
         e.preventDefault();
 
         const form = e.target;
+        const roomName = room.roomName
         const name = form.name.value;
         const email = form.email.value;
         const photo = form.photo.value;
         const time = Date.now();
         const review = form.comment.value;
-        const postDate = startDate
+        const rating  = form.rating.value
+        
+
        
 
         form.reset()
 
         const userReview = {
-            name, email, photo, time, review, postDate
+            roomName, name, email, photo, time, review, rating
         }
 
         
@@ -84,19 +86,20 @@ const Reviews = () => {
 
                             <div className='col-span-12 md:col-span-6'>
                                 <label className="text-gray-700 dark:text-gray-200">Photo</label>
-                                <input id="emailAddress" type="text" name='photo' value={user?.photoURL} className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                <input  type="text" name='photo' value={user?.photoURL} className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                             </div>
 
-                            <div className='col-span-12  md:col-span-6'>
-                                <label className="text-gray-700 dark:text-gray-200">Date</label>
-                                <div className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-                                    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-                                </div>
+
+                            <div className='col-span-12 md:col-span-6'>
+                                <label className="text-gray-700 dark:text-gray-200">Photo</label>
+                                <input type="number" name='rating' required min="1" max="5"  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                             </div>
+
+
 
                             <div className='col-span-12'>
                                 <label className="text-gray-700 dark:text-gray-200">Comment</label>
-                                <textarea name="comment" className="block resize-none w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"></textarea>
+                                <textarea name="comment" required className="block resize-none w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"></textarea>
                             </div>
 
 

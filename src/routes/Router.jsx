@@ -11,7 +11,8 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Booking from "../pages/Booking";
 import Reviews from "../pages/Reviews";
-import ReviewSlider from "../components/ReviewSlider";
+import MyBookings from "../pages/MyBookings";
+
 
 const router = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
           element: <About/>
         },
         {
+          path: '/myBookings', 
+          element: <MyBookings/>,
+        },
+        {
           path: '/contact',
           element: <Contact/>
         },
@@ -60,11 +65,7 @@ const router = createBrowserRouter([
           element: <Reviews/>,
           loader: ( { params }) => fetch(`${import.meta.env.VITE_API_URL}/rooms/${params.id}`)
         },
-        {
-          path: '/review',
-          element: <ReviewSlider/>,
-          loader: () => fetch(`${import.meta.env.VITE_API_URL}/review`)
-        }
+        
       ]
     },
   ]);
