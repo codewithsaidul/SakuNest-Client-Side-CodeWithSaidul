@@ -2,7 +2,7 @@ import axios from "axios";
 import useAuth from "../hooks/useAuth"
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import moment from "moment";
+
 
 
 const MyBookings = () => {
@@ -25,9 +25,10 @@ const MyBookings = () => {
         try {
 
            
-            const bookingTime = moment(bookTime);
-            const currentTime = moment()
-            const difference = currentTime.diff(bookingTime, 'minute')
+            const bookingTime = new Date(bookTime);
+            const currentTime = new Date()
+            const difference = (bookingTime - currentTime) / (100 * 60 * 60)
+            
             
             
             if ( difference >= 24) {
@@ -37,8 +38,9 @@ const MyBookings = () => {
                 toast.success("Booking Cancelled Successfull!")
                 // Refresh UI
                 getMyBookings()
+                
             } else {
-                toast.error("You Cann't Cancel a Booking If Less Then 24 Hours Are Remaining ")
+                toast.error("Cann't Cancel Booking. Check In Time Remaining Less Then 24 Hours")
             }
         
         } catch  {
