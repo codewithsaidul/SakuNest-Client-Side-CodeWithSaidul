@@ -1,6 +1,7 @@
 import { useLoaderData } from 'react-router-dom'
 import BannerBG from '../../public/banerBG.jpg'
 import RoomCard from '../components/RoomCard'
+import ReviewSlider from '../components/ReviewSlider'
 
 const Rooms = () => {
 
@@ -22,9 +23,12 @@ const Rooms = () => {
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-10 px-4 sm:px-8 md:px-12 lg:px-16 mx-auto'>
                 {
-                    rooms.map(room => <RoomCard key={room.id} room={room}/>)
+                    rooms.map(room => <RoomCard key={room._id} room={room}/>)
                 }
             </div>
+
+
+                <ReviewSlider/>
         </div>
     )
 }

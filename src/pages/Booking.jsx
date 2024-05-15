@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+import moment from "moment";
 
 const Booking = () => {
 
@@ -15,17 +16,18 @@ const Booking = () => {
     const booking = useLoaderData();
 
 
-    const handleBooking = async (e, status) => {
+    const handleBooking = async (e) => {
         e.preventDefault();
 
         const form = e.target;
         const roomName = form.roomName.value;
         const email = form.email.value;
         const price = form.price.value;
-        const bookingTime = startDate;
+        const bookingDate = startDate;
         const roomId = booking._id;
-
-        const bookings = {roomName, email, price, bookingTime, roomId, status }
+        const status = "Active";
+        const bookingTime = moment().utc
+        const bookings = {roomName, email, price, bookingDate, roomId, bookingTime, status }
         
 
         try {
