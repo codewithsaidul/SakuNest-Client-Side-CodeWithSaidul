@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 
 
@@ -38,6 +39,16 @@ const Login = () => {
 
     return (
         <div className="flex justify-center items-center min-h-[calc(100vh-70px)]">
+             <div className="application">
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <meta name="title" content="Your Room Booking Website" />
+                    <meta name="description" content="Find the perfect accommodation for your next adventure! Explore a wide range of rooms, suites, and apartments with our easy-to-use booking platform." />
+                    <title>SakuNest || Login</title>
+                </Helmet>
+            </div>
+
             <div className="w-full max-w-sm  p-6 m-auto mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800">
                 <div className="flex justify-center items-center mx-auto">
                     <img className="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg" alt="" />

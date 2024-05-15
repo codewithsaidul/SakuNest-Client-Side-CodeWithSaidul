@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth"
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 
 
@@ -51,6 +52,17 @@ const MyBookings = () => {
 
     return (
         <div>
+
+            <div className="application">
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <meta name="title" content="Your Room Booking Website" />
+                    <meta name="description" content="Find the perfect accommodation for your next adventure! Explore a wide range of rooms, suites, and apartments with our easy-to-use booking platform." />
+                    <title>SakuNest || MyBooking</title>
+                </Helmet>
+            </div>
+
             <div className="px-4 sm:px-8 md:px-12 lg:px-16  mx-auto my-20">
                 <section className="container px-4 mx-auto">
                     <div className="flex items-center gap-x-3">

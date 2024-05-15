@@ -8,6 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 
 const UpdateBooking = () => {
 
@@ -17,7 +18,7 @@ const UpdateBooking = () => {
     const { user } = useAuth()
     const booking = useLoaderData()
 
-    
+
 
     const navigate = useNavigate();
 
@@ -26,13 +27,13 @@ const UpdateBooking = () => {
 
         const roomName = e.target.roomName.value
         const bookingDate = new Date(startDate).toLocaleString();
-        const updateData = {roomName, bookingDate}
-        
+        const updateData = { roomName, bookingDate }
+
         try {
             const { data } = await axios.patch(`${import.meta.env.VITE_API_URL}/bookinges/${booking._id}`, updateData);
             navigate('/myBookings');
 
-            if(data.acknowledged) return toast.success("Booking Date Updated!")
+            if (data.acknowledged) return toast.success("Booking Date Updated!")
         } catch (err) {
             toast.error("Something Went Wrong")
         }
@@ -41,11 +42,21 @@ const UpdateBooking = () => {
     return (
         <div>
 
+            <div className="application">
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <meta name="title" content="Your Room Booking Website" />
+                    <meta name="description" content="Find the perfect accommodation for your next adventure! Explore a wide range of rooms, suites, and apartments with our easy-to-use booking platform." />
+                    <title>SakuNest || Update Booking</title>
+                </Helmet>
+            </div>
+
             <div className="hero h-96 mb-20" style={{ backgroundImage: `url(${BannerBG})` }}>
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">
                     <div>
-                        <h1 className="mb-5 w-full text-2xl sm:text-4xl md:text-6xl md:w-[700px] font-bold mx-auto">Book  A Room
+                        <h1 className="mb-5 w-full text-2xl sm:text-4xl md:text-6xl md:w-[700px] font-bold mx-auto">Update Booking
                         </h1>
 
                     </div>

@@ -4,10 +4,23 @@ import { IoBed } from 'react-icons/io5'
 import { IoMdLaptop } from 'react-icons/io'
 import About1 from '../assets/room1.jpg'
 import About2 from '../assets/room2.jpg'
+import { Helmet } from 'react-helmet'
 
 const About = () => {
   return (
     <div>
+
+      <div className="application">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <meta name="title" content="Your Room Booking Website" />
+          <meta name="description" content="Find the perfect accommodation for your next adventure! Explore a wide range of rooms, suites, and apartments with our easy-to-use booking platform." />
+          <title>SakuNest || About</title>
+        </Helmet>
+      </div>
+
+    
       <div className="hero h-96" style={{ backgroundImage: `url(${BannerBG})` }}>
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">

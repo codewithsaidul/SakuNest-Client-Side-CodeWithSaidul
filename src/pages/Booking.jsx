@@ -8,19 +8,20 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 
 const Booking = () => {
 
     const [startDate, setStartDate] = useState(new Date());
 
-   
+
     const { user } = useAuth()
     const booking = useLoaderData();
 
 
     const navigate = useNavigate()
-    
+
     const handleBooking = async (e) => {
         e.preventDefault();
 
@@ -33,7 +34,7 @@ const Booking = () => {
         const status = "Active";
 
         const bookings = { roomName, email, price, bookingDate, roomId, status }
-        
+
         try {
             Swal.fire({
                 title: roomName,
@@ -44,21 +45,21 @@ const Booking = () => {
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Confirm booking"
-              }).then( async(result) => {
+            }).then(async (result) => {
                 if (result.isConfirmed) {
                     const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/bookings`, bookings);
-                    
-                    if(data.insertedId) {
+
+                    if (data.insertedId) {
                         Swal.fire({
                             title: "Success!",
                             text: "Your Booking Was Successfull.",
                             icon: "success"
-                          });
-                          navigate('/myBookings')
+                        });
+                        navigate('/myBookings')
                     }
                 }
-              });
-          
+            });
+
         } catch (err) {
             toast.error("Something Went Wrong")
         }
@@ -66,6 +67,17 @@ const Booking = () => {
 
     return (
         <div>
+
+
+            <div className="application">
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <meta name="title" content="Your Room Booking Website" />
+                    <meta name="description" content="Find the perfect accommodation for your next adventure! Explore a wide range of rooms, suites, and apartments with our easy-to-use booking platform." />
+                    <title>SakuNest || Booking</title>
+                </Helmet>
+            </div>
 
             <div className="hero h-96 mb-20" style={{ backgroundImage: `url(${BannerBG})` }}>
                 <div className="hero-overlay bg-opacity-60"></div>
@@ -120,7 +132,7 @@ const Booking = () => {
 
             </div>
 
-           
+
         </div>
     )
 }

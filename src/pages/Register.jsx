@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import useAuth from "../hooks/useAuth";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 
 const Register = () => {
@@ -39,6 +40,16 @@ const Register = () => {
 
     return (
         <div>
+            <div className="application">
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <meta name="title" content="Your Room Booking Website" />
+                    <meta name="description" content="Find the perfect accommodation for your next adventure! Explore a wide range of rooms, suites, and apartments with our easy-to-use booking platform." />
+                    <title>SakuNest || Register</title>
+                </Helmet>
+            </div>
+
             <section className="bg-white dark:bg-gray-900">
                 <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
                     <form onSubmit={handleNewUser} className="w-full max-w-md shadow-md p-5 rounded-lg">

@@ -3,6 +3,7 @@ import { Link, useLoaderData } from "react-router-dom"
 
 import BannerBG from '../../public/banerBG.jpg'
 import "react-datepicker/dist/react-datepicker.css";
+import { Helmet } from "react-helmet";
 
 const RoomDetails = () => {
 
@@ -15,6 +16,16 @@ const RoomDetails = () => {
 
 
     <div>
+      <div className="application">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <meta name="title" content="Your Room Booking Website" />
+          <meta name="description" content="Find the perfect accommodation for your next adventure! Explore a wide range of rooms, suites, and apartments with our easy-to-use booking platform." />
+          <title>SakuNest || Update Booking</title>
+        </Helmet>
+      </div>
+
       <div className="hero h-96 mb-20" style={{ backgroundImage: `url(${BannerBG})` }}>
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">
@@ -64,13 +75,13 @@ const RoomDetails = () => {
             </div>
 
             <div className="mt-10">
-              
+
               {
-                room.availability 
-                ? <Link  to={`/booking/${room._id}`}  className="py-3 px-7 rounded-full bg-primary text-white font-title text-2xl">Book Now</Link>
-                : <Link  to={`/review/${room._id}`}  className="py-3 px-7 rounded-full bg-primary text-white font-title text- 2xl">Give A Review</Link>
+                room.availability
+                  ? <Link to={`/booking/${room._id}`} className="py-3 px-7 rounded-full bg-primary text-white font-title text-2xl">Book Now</Link>
+                  : <Link to={`/review/${room._id}`} className="py-3 px-7 rounded-full bg-primary text-white font-title text- 2xl">Give A Review</Link>
               }
-              
+
             </div>
           </div>
         </div>

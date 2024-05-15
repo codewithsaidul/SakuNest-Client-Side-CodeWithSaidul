@@ -3,8 +3,9 @@ import Banner from "../components/Banner"
 import ContactForm from "../components/ContactForm"
 import MyMaps from "../components/MyMaps"
 import Newsletter from "../components/Newsletter"
-// import ReviewSlider from "../components/ReviewSlider"
+import ReviewSlider from "../components/ReviewSlider"
 import FeaturedRooms from "../components/FeaturedRooms"
+import { Helmet } from "react-helmet"
 
 
 
@@ -19,6 +20,15 @@ const Home = () => {
 
   return (
     <div>
+       <div className="application">
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <meta name="title" content="Your Room Booking Website" />
+                    <meta name="description" content="Find the perfect accommodation for your next adventure! Explore a wide range of rooms, suites, and apartments with our easy-to-use booking platform." />
+                    <title>SakuNest || Home</title>
+                </Helmet>
+            </div>
         <div>
             <Banner/>
             <div className="my-20 px-4 sm:px-8 md:px-12 lg:px-16 mx-auto">
@@ -32,7 +42,7 @@ const Home = () => {
               </div>
             </div>
             <Newsletter/>
-            {/* <ReviewSlider/> */}
+            <ReviewSlider/>
         </div>
 
         <div className="my-20">
