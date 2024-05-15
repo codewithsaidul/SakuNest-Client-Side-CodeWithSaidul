@@ -35,8 +35,9 @@ const Booking = () => {
         
         try {
             Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
+                title: roomName,
+                text: booking.description.slice(0, 116),
+                footer: `Room Price Per Night $${price}`,
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
