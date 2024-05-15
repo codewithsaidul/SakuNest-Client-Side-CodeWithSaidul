@@ -13,69 +13,79 @@ import Booking from "../pages/Booking";
 import Reviews from "../pages/Reviews";
 import MyBookings from "../pages/MyBookings";
 import UpdateBooking from "../pages/UpdateBooking";
+import PriveteRoute from "./PriveteRoute";
 
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Main/>,
-      errorElement: <ErrorPage/>,
-      children: [
-        {
-            index: true,
-            element: <Home/>,
-            loader: () => fetch(`${import.meta.env.VITE_API_URL}/rooms`)
-        }, 
-        {
-            path: '/rooms',
-            element: <Rooms/>,
-            loader: () => fetch(`${import.meta.env.VITE_API_URL}/rooms`)
-        }, 
-        {
-            path: '/rooms/:id',
-            element: <RoomDetails/>,
-            loader: ( { params }) => fetch(`${import.meta.env.VITE_API_URL}/rooms/${params.id}`)
-        }, 
-        {
-            path: '/booking/:id',
-            element: <Booking/>,
-            loader: ( { params }) => fetch(`${import.meta.env.VITE_API_URL}/rooms/${params.id}`)
-        },
-        {
-            path: '/update/:id',
-            element: <UpdateBooking/>,
-            loader: ( { params }) => fetch(`${import.meta.env.VITE_API_URL}/booking/${params.id}`)
-        },
-        {
-          path: '/about', 
-          element: <About/>
-        },
-        {
-          path: '/myBookings', 
-          element: <MyBookings/>,
-        },
-        {
-          path: '/contact',
-          element: <Contact/>
-        },
-        {
-          path: '/signIn',
-          element: <Login/>
-        },
-        {
-          path: '/register',
-          element: <Register/>
-        },
-        {
-          path: '/review/:id',
-          element: <Reviews/>,
-          loader: ( { params }) => fetch(`${import.meta.env.VITE_API_URL}/rooms/${params.id}`)
-        },
-        
-      ]
-    },
-  ]);
+  {
+    path: "/",
+    element: <Main />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/rooms`)
+      },
+      {
+        path: '/rooms',
+        element: <Rooms />,
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/rooms`)
+      },
+      {
+        path: '/rooms/:id',
+        element: <RoomDetails />,
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/rooms/${params.id}`)
+      },
+      {
+        path: '/booking/:id',
+        element: <PriveteRoute> <Booking /> </PriveteRoute>,
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/rooms/${params.id}`)
+      },
+      {
+        path: '/update/:id',
+        element:
+          <PriveteRoute>
+            <UpdateBooking />
+          </PriveteRoute>,
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/booking/${params.id}`)
+      },
+      {
+        path: '/about',
+        element: <About />
+      },
+      {
+        path: '/myBookings',
+        element:
+          <PriveteRoute>
+            <MyBookings />
+          </PriveteRoute>,
+      },
+      {
+        path: '/contact',
+        element: <Contact />
+      },
+      {
+        path: '/signIn',
+        element: <Login />
+      },
+      {
+        path: '/register',
+        element: <Register />
+      },
+      {
+        path: '/review/:id',
+        element:
+          <PriveteRoute>
+            <Reviews />
+          </PriveteRoute>,
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/rooms/${params.id}`)
+      },
+
+    ]
+  },
+]);
 
 
 
-  export default router;
+export default router;

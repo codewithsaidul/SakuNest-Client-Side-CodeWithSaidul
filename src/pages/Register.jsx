@@ -30,9 +30,9 @@ const Register = () => {
                     photoURL: photo
                 })
                 setUser({ ...user, displayName: name, photoURL: photo })
+                loggedOut()
                 navigate('/signIn')
                 toast.success("Account Created Successfully!")
-                loggedOut()
             })
             .catch(error => console.log(error.message))
 

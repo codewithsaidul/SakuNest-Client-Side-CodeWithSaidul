@@ -1,4 +1,4 @@
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, useNavigate } from 'react-router-dom'
 import BannerBG from '../../public/banerBG.jpg'
 import useAuth from '../hooks/useAuth'
 // import DatePicker from "react-datepicker";
@@ -10,7 +10,7 @@ import toast from 'react-hot-toast';
 
 const Reviews = () => {
 
-    // const [startDate, setStartDate] = useState(new Date());
+    const navigate = useNavigate()
 
     const { user } = useAuth()
 
@@ -43,7 +43,10 @@ const Reviews = () => {
         try {
             const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/reviews`, userReview);
             
-            if(data.insertedId) return toast.success("Reviews Given Successfull!")
+            if(data.insertedId) {
+                navigate('/')
+                return toast.success("Reviews Given Successfull!")
+            }
         } catch  {
             toast.error("Reviews Given Unsuccessfull")
         }
@@ -91,7 +94,7 @@ const Reviews = () => {
 
 
                             <div className='col-span-12 md:col-span-6'>
-                                <label className="text-gray-700 dark:text-gray-200">Photo</label>
+                                <label className="text-gray-700 dark:text-gray-200">Rating</label>
                                 <input type="number" name='rating' required min="1" max="5"  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                             </div>
 
@@ -106,7 +109,7 @@ const Reviews = () => {
                         </div>
 
                         <div className="flex justify-end mt-6">
-                            <button className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Save</button>
+                            <button className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Give Review</button>
                         </div>
                     </form>
                 </section>

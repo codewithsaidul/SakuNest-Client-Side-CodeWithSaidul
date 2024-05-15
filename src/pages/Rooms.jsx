@@ -1,12 +1,24 @@
-import { useLoaderData } from 'react-router-dom'
+
 import BannerBG from '../../public/banerBG.jpg'
 import RoomCard from '../components/RoomCard'
 import ReviewSlider from '../components/ReviewSlider'
 import { Helmet } from 'react-helmet'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 
 const Rooms = () => {
 
-    const rooms = useLoaderData()
+    const [rooms, setRooms] = useState([]);
+
+    useEffect(() => {
+        getData()
+    }, [])
+
+    const getData = async () => {
+        const data = await axios(`${import.meta.env.VITE_API_URL}/rooms`)
+        setRooms(data.data)
+    }
+
 
 
     return (
@@ -32,10 +44,15 @@ const Rooms = () => {
                 </div>
             </div>
 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-10 px-4 sm:px-8 md:px-12 lg:px-16 mx-auto'>
-                {
-                    rooms.map(room => <RoomCard key={room._id} room={room} />)
-                }
+            <div>
+
+                
+
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 my-10 px-4 sm:px-8 md:px-12 lg:px-16 mx-auto'>
+                    {
+                        rooms.map(room => <RoomCard key={room._id} room={room} />)
+                    }
+                </div>
             </div>
 
 
