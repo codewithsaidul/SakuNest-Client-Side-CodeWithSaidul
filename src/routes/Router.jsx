@@ -12,6 +12,7 @@ import Register from "../pages/Register";
 import Booking from "../pages/Booking";
 import Reviews from "../pages/Reviews";
 import MyBookings from "../pages/MyBookings";
+import UpdateBooking from "../pages/UpdateBooking";
 
 
 const router = createBrowserRouter([
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
             path: '/booking/:id',
             element: <Booking/>,
             loader: ( { params }) => fetch(`${import.meta.env.VITE_API_URL}/rooms/${params.id}`)
+        },
+        {
+            path: '/update/:id',
+            element: <UpdateBooking/>,
+            loader: ( { params }) => fetch(`${import.meta.env.VITE_API_URL}/booking/${params.id}`)
         },
         {
           path: '/about', 

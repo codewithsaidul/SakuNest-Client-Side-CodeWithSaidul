@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 
 const Booking = () => {
@@ -27,7 +28,7 @@ const Booking = () => {
         const roomName = form.roomName.value;
         const email = form.email.value;
         const price = form.price.value;
-        const bookingDate = startDate;
+        const bookingDate = new Date(startDate).toLocaleString()
         const roomId = booking._id;
         const status = "Active";
 
@@ -59,7 +60,7 @@ const Booking = () => {
               });
           
         } catch (err) {
-            console.log(err.message)
+            toast.error("Something Went Wrong")
         }
     }
 
