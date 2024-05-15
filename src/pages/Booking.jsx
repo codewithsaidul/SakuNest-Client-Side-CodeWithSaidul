@@ -1,21 +1,25 @@
-import { useLoaderData } from "react-router-dom"
+import { useLoaderData, useNavigate } from "react-router-dom"
 import BannerBG from '../../public/banerBG.jpg'
 import useAuth from "../hooks/useAuth";
-import{ useState } from "react";
+import { useState } from "react";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
-import moment from "moment";
+import Swal from "sweetalert2";
+
 
 const Booking = () => {
 
     const [startDate, setStartDate] = useState(new Date());
 
+   
     const { user } = useAuth()
     const booking = useLoaderData();
 
 
+    const navigate = useNavigate()
+    
     const handleBooking = async (e) => {
         e.preventDefault();
 
@@ -26,13 +30,33 @@ const Booking = () => {
         const bookingDate = startDate;
         const roomId = booking._id;
         const status = "Active";
-        const bookingTime = moment().utc
-        const bookings = {roomName, email, price, bookingDate, roomId, bookingTime, status }
-        
 
+        const bookings = { roomName, email, price, bookingDate, roomId, status }
+        
         try {
-            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/bookings`, bookings);
-            console.log(data)
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Confirm booking"
+              }).then( async(result) => {
+                if (result.isConfirmed) {
+                    const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/bookings`, bookings);
+                    
+                    if(data.insertedId) {
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Your Booking Was Successfull.",
+                            icon: "success"
+                          });
+                          navigate('/myBookings')
+                    }
+                }
+              });
+          
         } catch (err) {
             console.log(err.message)
         }
@@ -89,7 +113,12 @@ const Booking = () => {
                         </div>
                     </form>
                 </section>
+
+
+
             </div>
+
+           
         </div>
     )
 }

@@ -29,6 +29,9 @@ const Navbar = () => {
             <NavLink to='/rooms' className={({ isActive }) => isActive ? 'text-primary text-xl font-bold font-title border-t-4 border-primary duration-300' : 'text-gray-500 text-xl font-medium border-0 duration-300'}>Rooms</NavLink>
         </li>
         <li>
+            <NavLink to='/myBookings' className={({ isActive }) => isActive ? 'text-primary text-xl font-bold font-title border-t-4 border-primary duration-300' : 'text-gray-500 text-xl font-medium border-0 duration-300'}>MyBookings</NavLink>
+        </li>
+        <li>
             <NavLink to='/contact' className={({ isActive }) => isActive ? 'text-primary text-xl duration-300 font-bold font-title border-t-4 border-primary' : 'text-gray-500 text-xl font-medium border-0 duration-300'}>Contact Us</NavLink>
         </li>
     </>
@@ -43,6 +46,9 @@ const Navbar = () => {
         </li>
         <li>
             <NavLink to='/rooms' className={({ isActive }) => isActive ? 'text-primary text-xl font-bold font-title border-t-4 border-primary duration-300' : 'text-gray-500 text-xl font-medium border-0 duration-300'}>Rooms</NavLink>
+        </li>
+        <li>
+            <NavLink to='/myBookings' className={({ isActive }) => isActive ? 'text-primary text-xl font-bold font-title border-t-4 border-primary duration-300' : 'text-gray-500 text-xl font-medium border-0 duration-300'}>MyBookings</NavLink>
         </li>
         <li>
             <NavLink to='/contact' className={({ isActive }) => isActive ? 'text-primary text-xl duration-300 font-bold font-title border-b-4 border-primary' : 'text-gray-500 text-xl font-medium border-0 duration-300'}>Contact Us</NavLink>
