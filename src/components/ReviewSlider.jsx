@@ -71,8 +71,8 @@ const ReviewSlider = () => {
                     {
                         reviews.map(review =>
                             <SwiperSlide  key={review?._id}>
-                                <div className='py-5 px-7 my-10 shadow-custom h-80 rounded-lg'>
-                                    <div className='p-10 text-center'>
+                                <div className='py-5 px-5 my-10 shadow-custom h-80 rounded-lg'>
+                                    <div className='p-7 text-center'>
                                         <p className='text-base text-gray-600 font-normal'>{review?.review}</p>
                                         <div className='flex justify-center items-center mt-5'>
                                             <figure>

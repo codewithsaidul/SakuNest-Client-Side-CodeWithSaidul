@@ -91,6 +91,7 @@ const MyBookings = () => {
                                                 <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Price</th>
                                                 <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Date</th>
                                                 <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Status</th>
+                                                <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Review</th>
                                                 <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Action</th>
 
 
@@ -129,6 +130,12 @@ const MyBookings = () => {
                                                             <div className={`inline-flex items-center px-3 py-1 rounded-full gap-x-2 ${booking.status === "Active" && "bg-blue-100/60 text-blue-500"} ${booking.status === "Cancelled" && "bg-red-100/60 text-red-500"}`}>
                                                                 <span className={`h-1.5 w-1.5 rounded-full ${booking.status === "Active" && "bg-blue-500"} ${booking.status === "Cancelled" && "bg-red-500"}`}></span>
                                                                 <h2 className="text-base font-normal">{booking.status}</h2>
+                                                            </div>
+                                                        </td>
+
+                                                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                                            <div className={`inline-flex bg-orange-100/60 items-center px-3 py-1 text-orange-500 rounded-full gap-x-2`}>
+                                                                <Link to={`/review/${booking._id}`}>Give Review</Link>
                                                             </div>
                                                         </td>
 

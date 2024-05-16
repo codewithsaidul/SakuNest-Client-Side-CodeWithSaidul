@@ -11,7 +11,7 @@ const Register = () => {
 
     const navigate = useNavigate()
     const location = useLocation();
-    const from = location.state || '/signIn'
+    const from = location.state || '/'
     const { createUser, user, setUser } = useAuth()
 
     const handleNewUser = async e => {
