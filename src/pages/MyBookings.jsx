@@ -17,7 +17,7 @@ const MyBookings = () => {
     }, [user?.email])
 
     const getMyBookings = async () => {
-        const { data } = await axios(`${import.meta.env.VITE_API_URL}/bookings/${user?.email}`);
+        const { data } = await axios(`${import.meta.env.VITE_API_URL}/bookings/${user?.email}`, { withCredentials: true});
         setMyBookings(data)
     }
 

@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth"
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
 import { useEffect } from "react";
+import axios from "axios";
 
 
 
@@ -17,39 +18,57 @@ const Login = () => {
 
 
     useEffect(() => {
-        if(user) return navigate('/')
+        if (user) return navigate('/')
     }, [navigate, user])
 
     // Sign In Existing User Using Email & Password
 
-    const handleSignIn = e => {
+    const handleSignIn = async e => {
         e.preventDefault();
 
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
 
-        loggedIn(email, password)
-        .then(() => {
-            toast.success("Sign IN Successful!");
-            navigate(from, {replace: true})
-        })
+        try {
+            const result = await loggedIn(email, password)
+            await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
+                email: result?.user?.email
+            },
+                {
+                    withCredentials: true
+                })
+            toast.success("Sign In Successful!")
+            navigate(from, { replace: true })
+        } catch {
+            toast.error("Something Went Wrong")
+        }
     }
 
     // Handle Google Sign In 
-    const handleGoogleSignIn = () => {
-        googleSignIn()
-        .then(() => {
+    const handleGoogleSignIn = async () => {
+
+        try {
+            const result = await googleSignIn()
+            await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
+                email: result?.user?.email
+            },
+                {
+                    withCredentials: true
+                })
             toast.success("Sign In Successful!")
-            navigate(from, {replace: true})
-        })
-        .catch(() => toast.error("Something Went Wrong"))
+            navigate(from, { replace: true })
+        } catch {
+            toast.error("Something Went Wrong")
+        }
+
+
     }
-    
+
 
     return (
         <div className="flex justify-center items-center min-h-[calc(100vh-70px)]">
-             <div className="application">
+            <div className="application">
                 <Helmet>
                     <meta charSet="utf-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -67,13 +86,13 @@ const Login = () => {
 
                 <form onSubmit={handleSignIn} className="mt-6">
                     <div>
-                        <label  className="block text-sm text-gray-800 dark:text-gray-200">Email</label>
+                        <label className="block text-sm text-gray-800 dark:text-gray-200">Email</label>
                         <input type="email" name="email" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                     </div>
 
                     <div className="mt-4">
                         <div className="flex items-center justify-between">
-                            <label  className="block text-sm text-gray-800 dark:text-gray-200">Password</label>
+                            <label className="block text-sm text-gray-800 dark:text-gray-200">Password</label>
                         </div>
 
                         <input type="password" name="password" className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
@@ -106,7 +125,7 @@ const Login = () => {
                         <span className="hidden mx-2 sm:inline">Sign in with Google</span>
                     </button>
 
-                    
+
                 </div>
 
                 <p className="mt-8 text-xs font-light text-center text-gray-400"> Don&apos;t have an account? <Link to='/register'><p className="font-medium text-primary dark:text-yellow-500 hover:underline">Create One</p></Link></p>

@@ -6,7 +6,7 @@ const Modal = ({ setShowModal }) => {
 
     return (
         <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center z-50">
-            <div className="card w-[45%] bg-base-100 shadow-xl">
+            <div className="card sm:w-[45%] bg-base-100 shadow-xl">
                 <figure><img src={BannerBG} alt="Shoes" /></figure>
                 <div className="p-5">
 

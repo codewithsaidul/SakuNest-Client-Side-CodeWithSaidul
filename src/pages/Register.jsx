@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
+import axios from "axios";
 
 
 const Register = () => {
@@ -10,10 +11,10 @@ const Register = () => {
 
     const navigate = useNavigate()
     const location = useLocation();
-    const from = location.state || '/'
-    const { createUser, loggedOut, user, setUser } = useAuth()
+    const from = location.state || '/signIn'
+    const { createUser, user, setUser } = useAuth()
 
-    const handleNewUser = e => {
+    const handleNewUser = async e => {
         e.preventDefault();
 
         const form = e.target;
@@ -24,18 +25,27 @@ const Register = () => {
 
         form.reset()
 
-        createUser(email, password)
-            .then(result => {
-                updateProfile(result.user, {
-                    displayName: name,
-                    photoURL: photo
+        try {
+            const result = await createUser(email, password)
+            await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
+                email: result?.user?.email
+            },
+                {
+                    withCredentials: true
                 })
-                loggedOut()
-                setUser({ ...user, displayName: name, photoURL: photo })
-                navigate(from, {replace: true})
-                toast.success("Account Created Successfully!")
+
+            updateProfile(result.user, {
+                displayName: name,
+                photoURL: photo
             })
-            .catch(error => console.log(error.message))
+            setUser({ ...user, displayName: name, photoURL: photo })
+            toast.success("Account Created Successfully!")
+            navigate(from, { replace: true })
+           
+        } catch {
+            toast.error("Something Went Wrong")
+        }
+
 
     }
 

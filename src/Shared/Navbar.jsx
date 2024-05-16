@@ -1,20 +1,26 @@
 import { Link, NavLink } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
 import toast from "react-hot-toast"
+import axios from "axios"
 
 
 const Navbar = () => {
 
     const { user, loggedOut } = useAuth()
 
-    
 
-    const handleLogOut = () => {
-        loggedOut()
-        .then(() => {
+
+    const handleLogOut = async () => {
+
+        try {
+            await loggedOut()
+            await axios(`${import.meta.env.VITE_API_URL}/logout`, { withCredentials: true })
             toast.success("Sign Out Successfull!")
-        })
-        .catch(() => toast.error("Something Went Wrong"))
+        }
+        catch {
+            toast.error("Something Went Wrong")
+        }
+
     }
 
     // Nav Menu for Desktop or Larger Screen
@@ -62,7 +68,7 @@ const Navbar = () => {
                 <div className="navbar-start">
 
 
-                    <a className="text-2xl sm:text-3xl  font-bold font-title text-primary">SakuNest</a>
+                    <a className="text-2xl sm:text-3xl  font-bold font-title text-primary flex items-center gap-1"> <img className="w-10 h-10" src="/logo.png" alt="" /> SakuNest</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="flex gap-8 px-1">

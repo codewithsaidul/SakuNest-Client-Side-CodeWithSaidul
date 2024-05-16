@@ -18,7 +18,6 @@ const Home = () => {
 
   const rooms = useLoaderData() || [];
 
-
   const featuredRooms = rooms.filter(room => room.specialOffers !== '');
 
 
