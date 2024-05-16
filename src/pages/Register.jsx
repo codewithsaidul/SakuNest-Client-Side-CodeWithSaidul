@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import useAuth from "../hooks/useAuth";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
@@ -9,7 +9,8 @@ const Register = () => {
 
 
     const navigate = useNavigate()
-
+    const location = useLocation();
+    const from = location.state || '/'
     const { createUser, loggedOut, user, setUser } = useAuth()
 
     const handleNewUser = e => {
@@ -29,9 +30,9 @@ const Register = () => {
                     displayName: name,
                     photoURL: photo
                 })
-                setUser({ ...user, displayName: name, photoURL: photo })
                 loggedOut()
-                navigate('/signIn')
+                setUser({ ...user, displayName: name, photoURL: photo })
+                navigate(from, {replace: true})
                 toast.success("Account Created Successfully!")
             })
             .catch(error => console.log(error.message))

@@ -1,19 +1,24 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
+import { useEffect } from "react";
 
 
 
 const Login = () => {
 
     const navigate = useNavigate();
-    const {  loggedIn, googleSignIn } = useAuth()
+    const { user, loggedIn, googleSignIn } = useAuth()
 
 
+    const location = useLocation();
+    const from = location.state || '/'
 
 
-
+    useEffect(() => {
+        if(user) return navigate('/')
+    }, [navigate, user])
 
     // Sign In Existing User Using Email & Password
 
@@ -27,7 +32,7 @@ const Login = () => {
         loggedIn(email, password)
         .then(() => {
             toast.success("Sign IN Successful!");
-            navigate('/')
+            navigate(from, {replace: true})
         })
     }
 
@@ -36,7 +41,7 @@ const Login = () => {
         googleSignIn()
         .then(() => {
             toast.success("Sign In Successful!")
-            navigate('/')
+            navigate(from, {replace: true})
         })
         .catch(() => toast.error("Something Went Wrong"))
     }

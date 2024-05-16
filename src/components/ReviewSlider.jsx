@@ -70,15 +70,15 @@ const ReviewSlider = () => {
                     {/* Slider 1 */}
                     {
                         reviews.map(review =>
-                            <SwiperSlide key={review?._id}>
-                                <div className='py-5 px-7 shadow-custom bg-base-200 h-fit rounded-lg'>
+                            <SwiperSlide  key={review?._id}>
+                                <div className='py-5 px-7 my-10 shadow-custom h-80 rounded-lg'>
                                     <div className='p-10 text-center'>
                                         <p className='text-base text-gray-600 font-normal'>{review?.review}</p>
                                         <div className='flex justify-center items-center mt-5'>
                                             <figure>
                                                 <img className='w-20 h-20 rounded-full mr-5' src={review?.photo} alt="user image" />
                                             </figure>
-                                            <h3 className='text-2xl text-primary font-title font-semibold'>{review?.name}</h3>
+                                            <h3 className='text-xl text-primary font-title font-semibold'>{review?.name}</h3>
                                         </div>
                                     </div>
                                 </div>
